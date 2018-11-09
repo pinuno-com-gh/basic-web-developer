@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>  <title> PHP_REQUEST_IN_HTML </title> </head>
+<body> 
+
+<form
+method = "post" action= "<?php echo $_SERVER ['PHP_SELF'] ;?>">
+NAME: <input type = "text" name= "First Name"
+<button type = "submit">SUBMIT</button>
+
+</form>
+
+<?php 
+if ($_SERVER ["REQUEST_METHOD" ] == "POST") {
+$name = htmlspecialchars ($_REQUEST [ 'First Name'] );
+if (empty ($name))
+ {
+echo "name must be entered" ;
+}
+
+else {
+echo $name;
+}
+}
+?>
+
+
+
+
+
+
+
+
+
+</body>
+
+
+</html>
