@@ -1,25 +1,16 @@
-<?php 
-$randomguess = mt_rand(0,20);
-$guess = $_POST['guess'];
-$number = $_POST['number_entered'];
-$submitname = $_POST['submitname'];
-$name = $_POST['name'];
-echo "hello $name";
+<!DOCTYPE html>
+<html>
+<body>
 
-
-if($submitname)
-{
-    if($number < 10);
-    echo "guess is higher";
-    
-    if  ($number > 10);
-    echo "Guess is lower";
-    
-    if ($number == $randomguess);
-    echo "Congratulations $name"; 
-}
+ 
+ WELCOME <?php echo $_POST["name"]; ?>
+<p>We are ready to play, the computer has generated random 
+numbers from 0-20, guess any number within 0-20 and see if your
+ guess is right.
+ </p>
 
 
 
 
-?>
+</body>
+</html>
