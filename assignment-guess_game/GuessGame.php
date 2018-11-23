@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <body style="background-color:cyan">
@@ -10,33 +11,62 @@
 </br>
 </br>
 
- 
- 
+
 <h3 align=center> WELCOME <?php echo $_POST["name"]; ?> !!!</h3>
 <p align=center>We are ready to play, the computer has generated random 
 numbers from 0-20, guess any number within 0-20 and see if your
  guess is right.
  </p>
+ <h4 align="center">AM GLADE YOU HAVE MADE IT HERE!!!</h4> 
 
-<form action="" >
-<h4 align="center">AM GLADE YOU HAVE MADE IT HERE!!!</h4> 
-<input type="number" name="guess"> 
-<input type="submit" name="submit" value="guess">
-</form>
-
-
-
-
-<?php 
-
- $number = $_POST['guess'];
- $submit = $_POST['submit'];
- $rand = mt_rand(0,20);
-?>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Guess A Number</title>
+	</head>
  
+	<body>
+		<form action="<?=$_SERVER['PHP_SELF'] ?>" method="post" name="guess-a-number">
+		   
+		    <input type="text" name="guess" />
+		    <input name="number" type="hidden" value="<?= $number ?>" />
+		    <input name="submit" type="submit" />
+		</form>
+	</body>
 
-
-
-
-</body>
+ 
+ 
+ 
+<?php
+ 
+session_start();
+ 
+if(isset($_SESSION['number']))
+{
+   $number = $_SESSION['number'];
+}
+else
+{
+   $_SESSION['number'] = mt_randrand(0,20);
+}
+ 
+ 
+if($_POST["guess"]){
+    $guess  = htmlspecialchars($_POST['guess']);
+ 
+	echo $guess . "<br />";
+    if ($guess < $number)
+	{ 
+        echo "You guessed is too low";
+    }
+	elseif($guess > $number)
+	{
+        echo "You guessed is too high";
+    }
+	elseif($guess == $number)
+	{
+        echo "Congratulation !!! you guessed right";
+    }
+ 
+}
+?>
 </html>
