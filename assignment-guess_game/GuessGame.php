@@ -25,11 +25,11 @@ numbers from 0-20, guess any number within 0-20 and see if your
 	</head>
  
 	<body>
-		<form action="<?=$_SERVER['PHP_SELF'] ?>" method="post" name="guess-a-number">
+		<form action="<?=$_SERVER['PHP_SELF'] ?>" method="post">
 		   
 		    <input type="text" name="guess" />
 		    <input name="number" type="hidden" value="<?= $number ?>" />
-		    <input name="submit" type="submit" />
+		    <input name="submit" type="submit"/>
 		</form>
 	</body>
 
@@ -46,14 +46,13 @@ if(isset($_SESSION['number']))
 }
 else
 {
-   $_SESSION['number'] = mt_randrand(0,20);
+   $_SESSION['number'] = mt_rand(0,20);
 }
  
  
 if($_POST["guess"]){
-    $guess  = htmlspecialchars($_POST['guess']);
- 
-	echo $guess . "<br />";
+  
+
     if ($guess < $number)
 	{ 
         echo "You guessed is too low";
