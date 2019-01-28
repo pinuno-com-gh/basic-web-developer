@@ -19,63 +19,10 @@ AppAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?php $this->registerCsrfMetaTags() ?>
+    <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
-
 	
-	
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {
-  font-family: "Arial", sans-serif;
-}
-
-.sidenav {
-  border: 0.2px solid grey;
-  height: 92.5%;
-  width: 160px;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color:  grey ;
-  overflow-x: hidden;
-  padding-top: 50px;
-}
-
-.sidenav a {
-  padding: 6px 8px 6px 16px;
-  text-decoration: none;
-  font-size: 15px;
-  color: black;
-  display: block;
-}
-
-.sidenav a:hover {
-  color: white;
-}
-
-.main {
-  margin-left: 160px; /* Same as the width of the sidenav */
-  font-size: 25px; /* Increased text to enable scrolling */
-  padding: 0px 10px;
-}
-
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-}
-</style>
-
-<div class="sidenav">
-  <a href="text_editor">New Post</a>
-  <a href="post.php">Publish</a>
-  <a href="#Status">Status</a>
-  <a href="#comments">Comment</a>
-</div>
-
-
 </head>
 <body>
 <?php $this->beginBody() ?>
@@ -83,8 +30,10 @@ body {
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
+	
+	
+        
+	
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
@@ -92,9 +41,10 @@ body {
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/home']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
+		
+			['label' => 'New post', 'url' => ['/post/index']],
+            ['label' => 'Home', 'url' => ['/post/view']],
+            
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
@@ -108,6 +58,15 @@ body {
                 . '</li>'
             )
         ],
+		
+		
+		
+		
+		
+		
+		
+		
+		
     ]);
     NavBar::end();
     ?>
@@ -125,7 +84,7 @@ body {
     <div class="container">
         <p class="pull-left">&copy; Pinuno <?= date('Y') ?></p>
 
-        <p align="right"> Powered by <font color="grey">Pinuno</font></p>
+        <p class="pull-right"><i>Pinuno</i></p>
     </div>
 </footer>
 

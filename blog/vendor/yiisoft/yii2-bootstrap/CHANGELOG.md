@@ -1,12 +1,6 @@
 Yii Framework 2 bootstrap extension Change Log
 ==============================================
 
-2.0.9 under development
------------------------
-
-- Chg #17016: Upgraded Twitter Bootstrap to 3.4.x (leoshtika)
-
-
 2.0.8 February 16, 2018
 -----------------------
 

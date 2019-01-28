@@ -1,16 +1,6 @@
 Yii Framework 2 debug extension Change Log
 ==========================================
 
-2.1.0 under development
-------------------------
-
-- Enh #88: Allow custom module access check (simialbi) 
-- Enh #247: Added dump panel that collects and displays debug messages with `Logger::LEVEL_TRACE` (pistej, simialbi)
-- Bug #343: Fixed errors on "Roles and permissions" tab (simialbi)
-- Enh #296, #326, #340: Removed bootstrap as dependency, bundled Bootstrap 4 (simialbi)
-- Bug #342: Toolbar animates on every page load in Chrome 70 (ricpelo)
-
-
 2.0.14 September 24, 2018
 -------------------------
 

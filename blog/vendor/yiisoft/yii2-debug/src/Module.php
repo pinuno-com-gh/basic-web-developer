@@ -10,12 +10,12 @@ namespace yii\debug;
 use Yii;
 use yii\base\Application;
 use yii\base\BootstrapInterface;
-use yii\helpers\Html;
 use yii\helpers\Json;
-use yii\helpers\Url;
-use yii\web\ForbiddenHttpException;
 use yii\web\Response;
+use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\web\View;
+use yii\web\ForbiddenHttpException;
 
 /**
  * The Yii Debug Module provides the debug toolbar and debugger
@@ -42,16 +42,6 @@ class Module extends \yii\base\Module implements BootstrapInterface
      * The default value is `[]`.
      */
     public $allowedHosts = [];
-    /**
-     * @var callable A valid PHP callback that returns true if user is allowed to use web shell and false otherwise
-     *
-     * The signature is the following:
-     *
-     * function (Action|null $action) The action can be null when called from a non action context (like set debug header)
-     *
-     * @since 2.1.0
-     */
-    public $checkAccessCallback;
     /**
      * {@inheritdoc}
      */
@@ -109,11 +99,6 @@ class Module extends \yii\base\Module implements BootstrapInterface
      */
     public $disableIpRestrictionWarning = false;
     /**
-     * @var bool whether to disable access callback restriction warning triggered by checkAccess function
-     * @since 2.1.0
-     */
-    public $disableCallbackRestrictionWarning = false;
-    /**
      * @var mixed the string with placeholders to be be substituted or an anonymous function that returns the trace line string.
      * The placeholders are {file}, {line} and {text} and the string should be as follows:
      *
@@ -159,7 +144,6 @@ class Module extends \yii\base\Module implements BootstrapInterface
 
     /**
      * {@inheritdoc}
-     * @throws \yii\base\InvalidConfigException
      */
     public function init()
     {
@@ -173,7 +157,6 @@ class Module extends \yii\base\Module implements BootstrapInterface
 
     /**
      * Initializes panels.
-     * @throws \yii\base\InvalidConfigException
      */
     protected function initPanels()
     {
@@ -208,7 +191,6 @@ class Module extends \yii\base\Module implements BootstrapInterface
      */
     public function bootstrap($app)
     {
-        /* @var $app \yii\base\Application */
         $this->logTarget = $app->getLog()->targets['debug'] = new LogTarget($this);
 
         // delay attaching event handler to the view component after it is fully configured
@@ -235,8 +217,6 @@ class Module extends \yii\base\Module implements BootstrapInterface
 
     /**
      * {@inheritdoc}
-     * @throws \yii\base\InvalidConfigException
-     * @throws ForbiddenHttpException
      */
     public function beforeAction($action)
     {
@@ -254,7 +234,7 @@ class Module extends \yii\base\Module implements BootstrapInterface
         Yii::$app->getView()->off(View::EVENT_END_BODY, [$this, 'renderToolbar']);
         Yii::$app->getResponse()->off(Response::EVENT_AFTER_PREPARE, [$this, 'setDebugHeaders']);
 
-        if ($this->checkAccess($action)) {
+        if ($this->checkAccess()) {
             $this->resetGlobalSettings();
             return true;
         }
@@ -279,8 +259,7 @@ class Module extends \yii\base\Module implements BootstrapInterface
         if (!$this->checkAccess()) {
             return;
         }
-        $url = Url::toRoute([
-            '/' . $this->id . '/default/view',
+        $url = Url::toRoute(['/' . $this->id . '/default/view',
             'tag' => $this->logTarget->tag,
         ]);
         $event->sender->getHeaders()
@@ -303,8 +282,7 @@ class Module extends \yii\base\Module implements BootstrapInterface
      */
     public function getToolbarHtml()
     {
-        $url = Url::toRoute([
-            '/' . $this->id . '/default/toolbar',
+        $url = Url::toRoute(['/' . $this->id . '/default/toolbar',
             'tag' => $this->logTarget->tag,
         ]);
         return '<div id="yii-debug-toolbar" data-url="' . Html::encode($url) . '" style="display:none" class="yii-debug-toolbar-bottom"></div>';
@@ -314,7 +292,6 @@ class Module extends \yii\base\Module implements BootstrapInterface
      * Renders mini-toolbar at the end of page body.
      *
      * @param \yii\base\Event $event
-     * @throws \Throwable
      */
     public function renderToolbar($event)
     {
@@ -327,53 +304,32 @@ class Module extends \yii\base\Module implements BootstrapInterface
         echo $view->renderDynamic('return Yii::$app->getModule("' . $this->id . '")->getToolbarHtml();');
 
         // echo is used in order to support cases where asset manager is not available
-        echo '<style>' . $view->renderPhpFile(__DIR__ . '/assets/css/toolbar.css') . '</style>';
-        echo '<script>' . $view->renderPhpFile(__DIR__ . '/assets/js/toolbar.js') . '</script>';
+        echo '<style>' . $view->renderPhpFile(__DIR__ . '/assets/toolbar.css') . '</style>';
+        echo '<script>' . $view->renderPhpFile(__DIR__ . '/assets/toolbar.js') . '</script>';
     }
 
     /**
      * Checks if current user is allowed to access the module
-     * @param \yii\base\Action|null $action the action to be executed. May be `null` when called from
-     * a non action context
      * @return bool if access is granted
      */
-    protected function checkAccess($action = null)
+    protected function checkAccess()
     {
-        $allowed = false;
-
         $ip = Yii::$app->getRequest()->getUserIP();
         foreach ($this->allowedIPs as $filter) {
             if ($filter === '*' || $filter === $ip || (($pos = strpos($filter, '*')) !== false && !strncmp($ip, $filter, $pos))) {
-                $allowed = true;
-                break;
+                return true;
             }
         }
-        if ($allowed === false) {
-            foreach ($this->allowedHosts as $hostname) {
-                $filter = gethostbyname($hostname);
-                if ($filter === $ip) {
-                    $allowed = true;
-                    break;
-                }
+        foreach ($this->allowedHosts as $hostname) {
+            $filter = gethostbyname($hostname);
+            if ($filter === $ip) {
+                return true;
             }
         }
-        if ($allowed === false) {
-            if (!$this->disableIpRestrictionWarning) {
-                Yii::warning('Access to debugger is denied due to IP address restriction. The requesting IP address is ' . $ip, __METHOD__);
-            }
-
-            return false;
-        }
-
-        if ($this->checkAccessCallback !== null && call_user_func($this->checkAccessCallback, $action) !== true) {
-            if (!$this->disableCallbackRestrictionWarning) {
-                Yii::warning('Access to debugger is denied due to checkAccessCallback.', __METHOD__);
-            }
-
-            return false;
-        }
-
-        return true;
+		if (!$this->disableIpRestrictionWarning) {
+			Yii::warning('Access to debugger is denied due to IP address restriction. The requesting IP address is ' . $ip, __METHOD__);
+		}
+        return false;
     }
 
     /**
@@ -393,7 +349,6 @@ class Module extends \yii\base\Module implements BootstrapInterface
             'timeline' => ['class' => 'yii\debug\panels\TimelinePanel'],
             'user' => ['class' => 'yii\debug\panels\UserPanel'],
             'router' => ['class' => 'yii\debug\panels\RouterPanel'],
-            'dump' => ['class' => 'yii\debug\panels\DumpPanel'],
         ];
     }
 
