@@ -22,7 +22,6 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
-	
 </head>
 <body>
 <?php $this->beginBody() ?>
@@ -30,10 +29,8 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-	
-	
-        
-	
+        'brandLabel' => Yii::$app->name,
+        'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
@@ -41,10 +38,10 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-		
-			['label' => 'New post', 'url' => ['/post/index']],
-            ['label' => 'Home', 'url' => ['/post/view']],
-            
+            ['label' => 'Home', 'url' => ['/post/index']],
+			['label' => 'New Post', 'url' => ['/post/create']],
+            ['label' => 'About', 'url' => ['/site/about']],
+            ['label' => 'Contact', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
@@ -58,15 +55,6 @@ AppAsset::register($this);
                 . '</li>'
             )
         ],
-		
-		
-		
-		
-		
-		
-		
-		
-		
     ]);
     NavBar::end();
     ?>
@@ -82,7 +70,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; Pinuno <?= date('Y') ?></p>
+        <p class="pull-left">&copy; Pinuno Software <?= date('Y') ?></p>
 
         <p class="pull-right"><i>Pinuno</i></p>
     </div>

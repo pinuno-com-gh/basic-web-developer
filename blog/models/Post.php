@@ -7,8 +7,8 @@ use Yii;
 /**
  * This is the model class for table "post".
  *
- * @property string $Title
- * @property string $Body
+ * @property string $title
+ * @property string $content
  */
 class Post extends \yii\db\ActiveRecord
 {
@@ -26,10 +26,10 @@ class Post extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Title', 'Body'], 'required'],
-            [['Body'], 'string'],
-            [['Title'], 'string', 'max' => 255],
-            [['Title'], 'unique'],
+            [['title', 'content'], 'required'],
+            [['content'], 'string'],
+            [['title'], 'string', 'max' => 255],
+            [['title'], 'unique'],
         ];
     }
 
@@ -39,10 +39,8 @@ class Post extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'Title' => 'Title',
-            'Body' => 'Body',
+            'title' => 'Title',
+            'content' => 'Content',
         ];
     }
-	
-	
 }

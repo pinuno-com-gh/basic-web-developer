@@ -5,7 +5,7 @@ use yii\widgets\ActiveForm;
 $this->registerJsFile('https://unpkg.com/stackedit-js@1.0.7/docs/lib/stackedit.min.js');
 $this->registerJsFile('http://js.nicedit.com/nicEdit-latest.js');
 /* @var $this yii\web\View */
-/* @var $model app\models\post */
+/* @var $model app\models\Post */
 /* @var $form yii\widgets\ActiveForm */
 
 $js = <<<JS
@@ -40,11 +40,13 @@ $this->registerJs($js, 4, 'content_editor');
 
 <div class="post-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+        'enableClientScript' => false
+    ]); ?>
 
-    <?= $form->field($model, 'Title')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'Body')->textarea(['rows' => 15]) ?>
+    <?= $form->field($model, 'content')->textarea(['rows' => 10, 'id'=>'content_editor']) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
