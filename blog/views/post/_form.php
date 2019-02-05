@@ -2,8 +2,10 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+
 $this->registerJsFile('https://unpkg.com/stackedit-js@1.0.7/docs/lib/stackedit.min.js');
 $this->registerJsFile('http://js.nicedit.com/nicEdit-latest.js');
+
 /* @var $this yii\web\View */
 /* @var $model app\models\Post */
 /* @var $form yii\widgets\ActiveForm */
@@ -36,13 +38,12 @@ $js = <<<JS
 JS;
 $this->registerJs($js, 4, 'content_editor');
 
+
 ?>
 
 <div class="post-form">
 
-    <?php $form = ActiveForm::begin([
-        'enableClientScript' => false
-    ]); ?>
+    <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
@@ -50,7 +51,6 @@ $this->registerJs($js, 4, 'content_editor');
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
-		
     </div>
 
     <?php ActiveForm::end(); ?>
