@@ -8,7 +8,17 @@
 
 
 
+<?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
 
+            'id',
+            'comment',
+
+            ['class' => 'yii\grid\ActionColumn'],
+        ],
+    ]); ?>
 
 
 	
