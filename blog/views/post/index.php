@@ -13,10 +13,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
+  <!--  <p> For Reference
         <?= Html::a('Create Post', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-
+-->
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
@@ -27,9 +27,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'content:ntext',
             'tags:ntext',
             'status',
-            //'create_time:datetime',
-            //'update_time:datetime',
-            //'author_id',
+            'create_time:datetime',
+            'update_time:datetime',
+            'author_id',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
