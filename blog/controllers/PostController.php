@@ -20,22 +20,6 @@ class PostController extends Controller
     public function behaviors()
     {
         return [
-			'access' =>[
-				'class' => \yii\filters\AccessControl::className(),
-				'only' => ['create', 'update', 'delete'],
-				'rules' =>[
-					[
-						'allow' => false,
-						'actions' => ['create', 'update', 'delete'],
-						'roles' => ['?'],
-					],
-					[
-						'allow' => true,
-						'actions' => ['create', 'update', 'view', 'delete'],
-						'roles' => ['@'],
-					],
-				],
-			],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

@@ -10,6 +10,11 @@ use Yii;
  * @property int $id
  * @property string $title
  * @property string $content
+ * @property string $tags
+ * @property int $status
+ * @property int $create_time
+ * @property int $update_time
+ * @property int $author_id
  */
 class Post extends \yii\db\ActiveRecord
 {
@@ -27,9 +32,10 @@ class Post extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'content'], 'required'],
-            [['content'], 'string'],
-            [['title'], 'string', 'max' => 255],
+            [['title', 'content', 'tags', 'status', 'create_time', 'update_time', 'author_id'], 'required'],
+            [['content', 'tags'], 'string'],
+            [['status', 'create_time', 'update_time', 'author_id'], 'integer'],
+            [['title'], 'string', 'max' => 128],
         ];
     }
 
@@ -42,6 +48,11 @@ class Post extends \yii\db\ActiveRecord
             'id' => 'ID',
             'title' => 'Title',
             'content' => 'Content',
+            'tags' => 'Tags',
+            'status' => 'Status',
+            'create_time' => 'Create Time',
+            'update_time' => 'Update Time',
+            'author_id' => 'Author ID',
         ];
     }
 }
