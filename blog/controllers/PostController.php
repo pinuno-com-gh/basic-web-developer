@@ -22,11 +22,11 @@ class PostController extends Controller
         return [
 			'access' =>[
 				'class' => \yii\filters\AccessControl::className(),
-				'only' => ['create', 'update', 'view', 'delete'],
+				'only' => ['create', 'update', 'delete'],
 				'rules' =>[
 					[
 						'allow' => false,
-						'actions' => ['create', 'update', 'view', 'delete'],
+						'actions' => ['create', 'update', 'delete'],
 						'roles' => ['?'],
 					],
 					[

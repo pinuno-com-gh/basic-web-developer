@@ -12,10 +12,12 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="post-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
+	
+<!-- /* FOR REFERENCE */
     <p>
         <?= Html::a('comment', ['comment/create'], ['class' => 'btn btn-success']) ?>
     </p>
+-->
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
