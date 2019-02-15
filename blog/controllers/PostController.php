@@ -13,6 +13,8 @@ use yii\filters\VerbFilter;
  * PostController implements the CRUD actions for Post model.
  */
 class PostController extends Controller
+
+
 {
     /**
      * {@inheritdoc}
@@ -86,11 +88,23 @@ class PostController extends Controller
      */
     public function actionCreate()
     {
+            
         $model = new Post();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+			$model->author_id = \Yii::$app->user->id;
+		//$model->tag = \Yii::$app->tag->id;
+			if($model->save()){
+				return $this->redirect(['view', 'id' => $model->id]);
+			}       
+           
         }
+ 
+			
+			
+			
+       // if ($model->load(Yii::$app->request->post()) && $model->save()) {
+       //     return $this->redirect(['view', 'id' => $model->author_id]);
+      //  }
 
         return $this->render('create', [
             'model' => $model,

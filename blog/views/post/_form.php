@@ -16,7 +16,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'tags')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'tags')->textarea(['rows' => 1]) ?>
 
     <?= $form->field($model, 'status')->textInput() ?>
 

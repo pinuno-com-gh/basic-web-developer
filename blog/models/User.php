@@ -12,7 +12,7 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
 
     private static $users = [
         '100' => [
-            'id' => '100',
+            'id' => 'admin',
             'username' => 'admin',
             'password' => 'admin',
             'authKey' => 'test100key',

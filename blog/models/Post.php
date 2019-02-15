@@ -11,10 +11,10 @@ use Yii;
  * @property string $title
  * @property string $content
  * @property string $tags
- * @property int $status
+ * @property string $status
  * @property int $create_time
  * @property int $update_time
- * @property int $author_id
+ * @property string $author_id
  */
 class Post extends \yii\db\ActiveRecord
 {
@@ -33,9 +33,9 @@ class Post extends \yii\db\ActiveRecord
     {
         return [
             [['title', 'content', 'tags', 'status', 'create_time', 'update_time', 'author_id'], 'required'],
-            [['content', 'tags'], 'string'],
-            [['status', 'create_time', 'update_time', 'author_id'], 'integer'],
-            [['title'], 'string', 'max' => 128],
+            [['content'], 'string'],
+            [['create_time', 'update_time'], 'integer'],
+            [['title', 'tags', 'status', 'author_id'], 'string', 'max' => 128],
         ];
     }
 
