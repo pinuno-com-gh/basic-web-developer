@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <head>
 </head>
 <body>
-<div class="post-index">
+<div class='PostIndex'>
 
     <h1><?= Html::encode($this->title) ?></h1>
 

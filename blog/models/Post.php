@@ -12,8 +12,8 @@ use Yii;
  * @property string $content
  * @property string $tags
  * @property string $status
- * @property int $create_time
- * @property int $update_time
+ * @property string $create_time
+ * @property string $update_time
  * @property string $author_id
  */
 class Post extends \yii\db\ActiveRecord
@@ -32,9 +32,9 @@ class Post extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'content', 'tags', 'status', 'create_time', 'update_time', 'author_id'], 'required'],
+            [['title', 'content', 'tags', 'status', 'author_id'], 'required'],
             [['content'], 'string'],
-            [['create_time', 'update_time'], 'integer'],
+            [['create_time', 'update_time'], 'safe'],
             [['title', 'tags', 'status', 'author_id'], 'string', 'max' => 128],
         ];
     }
