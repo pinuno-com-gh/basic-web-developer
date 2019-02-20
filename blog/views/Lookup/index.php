@@ -1,6 +1,7 @@
 
 
-Yet To Configure
+yet to configure
+
 
 
 <?php

@@ -101,7 +101,7 @@ class PostController extends Controller
  
 			
 			
-			
+		// For references
        // if ($model->load(Yii::$app->request->post()) && $model->save()) {
        //     return $this->redirect(['view', 'id' => $model->author_id]);
       //  }

@@ -2,6 +2,10 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\models\Tag;
+use app\models\Lookup;
+use yii\helpers\ArrayHelper;
+
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Post */
@@ -16,9 +20,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'tags')->textarea(['rows' => 1]) ?>
+    <?= $form->field($model, 'tags')->DropDownlist(ArrayHelper::map(tag::find()->all(), 'id', 'name')) ?>
 
-    <?= $form->field($model, 'status')->textInput() ?>
+    <?= $form->field($model, 'status')->DropDownlist(ArrayHelper::map(lookup::find()->all(), 'id', 'name')) ?>
 
     <?= $form->field($model, 'create_time')->textInput() ?>
 
