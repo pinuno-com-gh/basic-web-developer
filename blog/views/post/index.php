@@ -2,6 +2,9 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\Inflector;
+use yii\grid\DataColumn;
+use yii\data\ActiveDataProvider;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -24,6 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
 -->
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
+
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 

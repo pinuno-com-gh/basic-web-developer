@@ -20,9 +20,9 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'tags')->DropDownlist(ArrayHelper::map(tag::find()->all(), 'id', 'name')) ?>
+    <?= $form->field($model, 'tags')->DropDownlist(ArrayHelper::map(tag::find()->all(), 'name', 'name')) ?>
 
-    <?= $form->field($model, 'status')->DropDownlist(ArrayHelper::map(lookup::find()->all(), 'id', 'name')) ?>
+    <?= $form->field($model, 'status')->DropDownlist(ArrayHelper::map(lookup::find()->all(),'name','name')) ?>
 
     <?= $form->field($model, 'create_time')->textInput() ?>
 

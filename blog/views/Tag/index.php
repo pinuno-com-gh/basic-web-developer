@@ -9,9 +9,5 @@ use yii\helpers\ArrayHelper;
 /* @var $this yii\web\View */
 /* @var $model app\models\Tag */
 /* @var $form ActiveForm */
-
-
-
-
 ?>
 

@@ -9,8 +9,8 @@ use Yii;
  *
  * @property int $id
  * @property string $content
- * @property int $status
- * @property int $create_time
+ * @property string $status
+ * @property string $create_time
  * @property string $author
  * @property string $email
  * @property string $url
@@ -32,10 +32,11 @@ class Comment extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['content', 'status', 'create_time', 'author', 'email', 'url', 'post_id'], 'required'],
+            [['content', 'status', 'author', 'email', 'url', 'post_id'], 'required'],
             [['content'], 'string'],
-            [['status', 'create_time', 'post_id'], 'integer'],
-            [['author', 'email', 'url'], 'string', 'max' => 128],
+            [['create_time'], 'safe'],
+            [['post_id'], 'integer'],
+            [['status', 'author', 'email', 'url'], 'string', 'max' => 128],
         ];
     }
 

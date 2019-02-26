@@ -61,6 +61,7 @@ class PostController extends Controller
     {
         $dataProvider = new ActiveDataProvider([
             'query' => Post::find(),
+			'sort'=> ['defaultOrder' => ['create_time'=>SORT_DESC]]
         ]);
 
         return $this->render('index', [
