@@ -9,6 +9,7 @@ use Yii;
  *
  * @property int $id
  * @property string $title
+ * @property string $image
  * @property string $content
  * @property string $tags
  * @property string $status
@@ -36,6 +37,7 @@ class Post extends \yii\db\ActiveRecord
             [['content'], 'string'],
             [['create_time', 'update_time'], 'safe'],
             [['title', 'tags', 'status', 'author_id'], 'string', 'max' => 128],
+            [['image'], 'string', 'max' => 200],
         ];
     }
 
@@ -47,6 +49,7 @@ class Post extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'title' => 'Title',
+            'image' => 'Image',
             'content' => 'Content',
             'tags' => 'Tags',
             'status' => 'Status',
