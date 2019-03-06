@@ -11,7 +11,7 @@ use yii\filters\VerbFilter;
 
 class TagController extends \yii\web\Controller
 {
-    public function actionIndex()
+  /**  public function actionIndex()
 {
     $model = new \app\models\Tag();
 
@@ -22,10 +22,22 @@ class TagController extends \yii\web\Controller
         }
     }
 
-    return $this->render('index', [
+}
+return $this->render('index', [
         'model' => $model,
     ]);
-}
+	
+	**/
+	
+	public function actionIndex()
+    {
+        $dataProvider = new ActiveDataProvider([
+            'query' => Post::find(),
+			'sort'=> ['defaultOrder' => ['create_time'=>SORT_DESC]]
+        ]);
 
-
+        return $this->render('index', [
+            'dataProvider' => $dataProvider,
+        ]);
+    }
 }
