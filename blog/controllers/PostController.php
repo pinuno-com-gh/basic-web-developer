@@ -9,6 +9,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
+
+
 /**
  * PostController implements the CRUD actions for Post model.
  */
@@ -59,12 +61,19 @@ class PostController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
+		$searchModel = new post();
+	
+		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+		
+       /** For references
+	   
+			$dataProvider = new ActiveDataProvider([
             'query' => Post::find(),
-			'sort'=> ['defaultOrder' => ['create_time'=>SORT_DESC]]
-        ]);
+	    	'sort'=> ['defaultOrder' => ['create_time'=>SORT_DESC]]
+        **/
 
         return $this->render('index', [
+			'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -93,7 +102,6 @@ class PostController extends Controller
         $model = new Post();
         if ($model->load(Yii::$app->request->post())) {
 			$model->author_id = \Yii::$app->user->id;
-		//$model->tag = \Yii::$app->tag->id;
 			if($model->save()){
 				return $this->redirect(['view', 'id' => $model->id]);
 			}       

@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\data\ActiveDataProvider;
+
 
 /**
  * This is the model class for table "post".
@@ -58,4 +60,37 @@ class Post extends \yii\db\ActiveRecord
             'author_id' => 'Author ID',
         ];
     }
+	public function search($params)
+    {
+        $query = post::find();
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        $query->andFilterWhere([
+          'id' => $this->id,
+		  'id' => $this->id,
+        ]);
+
+        if (isset($_GET['SearchModelClassName']) && !($this->load($params) && $this->validate())) {
+    return $dataProvider;
+	}
+
+        $query->andFilterWhere([
+            'id' => $this->id,
+		    'id' => $this->id,
+        ]);
+
+        $query->andFilterWhere([
+		
+	    'tags' => $this->tags,
+		'tags' => $this->tags,
+		
+		
+		]);
+
+        return $dataProvider;
+    }
 }
+
