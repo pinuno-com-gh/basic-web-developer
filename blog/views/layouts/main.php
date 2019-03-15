@@ -49,9 +49,9 @@ AppAsset::register($this);
 		    
             ['label' => 'Home', 'url' => ['/post/index']],		
 			['label' => 'New Post', 'url' => ['/post/create']],
-			['label' => 'Comments', 'url' => ['/comment/index']],
-			['label' => 'Status', 'url' => ['/lookup/index']],
-			['label' => 'Tags', 'url' => ['/tag/index']],
+	//		['label' => 'Comments', 'url' => ['/comment/index']],
+	//		['label' => 'Status', 'url' => ['/lookup/index']],
+	//		['label' => 'Tags', 'url' => ['/tag/index']],
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (

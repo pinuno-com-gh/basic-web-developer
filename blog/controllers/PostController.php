@@ -65,18 +65,20 @@ class PostController extends Controller
 	
 		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 		
+		
        /** For references
 	   
 			$dataProvider = new ActiveDataProvider([
             'query' => Post::find(),
 	    	'sort'=> ['defaultOrder' => ['create_time'=>SORT_DESC]]
         **/
-
-        return $this->render('index', [
+        return $this->render('index',  [
 			'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
+
+		
 
     /**
      * Displays a single Post model.

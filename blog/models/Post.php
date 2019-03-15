@@ -51,7 +51,6 @@ class Post extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'title' => 'Title',
-            'image' => 'Image',
             'content' => 'Content',
             'tags' => 'Tags',
             'status' => 'Status',
@@ -60,37 +59,39 @@ class Post extends \yii\db\ActiveRecord
             'author_id' => 'Author ID',
         ];
     }
+	
+	
 	public function search($params)
     {
-        $query = post::find();
-
+        $query = Post::find()->where(['tags'=>$params]);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+			'sort' => ['defaultOrder' =>['create_time' => SORT_DESC
+			],
+			
+			],	
+			
         ]);
-
         $query->andFilterWhere([
-          'id' => $this->id,
-		  'id' => $this->id,
+          'title' => $this->title,
+		  'content' => $this->content,
+		  'tags' => $this->tags,
         ]);
-
-        if (isset($_GET['SearchModelClassName']) && !($this->load($params) && $this->validate())) {
-    return $dataProvider;
-	}
-
-        $query->andFilterWhere([
-            'id' => $this->id,
-		    'id' => $this->id,
-        ]);
-
-        $query->andFilterWhere([
-		
-	    'tags' => $this->tags,
-		'tags' => $this->tags,
-		
-		
-		]);
-
+        $query->andFilterWhere(['like', 'title', $this->title]);   
+		$query->andFilterWhere(['like', 'content', $this->content]);
+		$query->andFilterWhere(['like', 'tags', $this->tags]);
+        
+        
         return $dataProvider;
+    }
+	
+	public function defaultSearch()
+    {
+        $query = Post::find();
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+		]);	
+			
     }
 }
 
