@@ -44,4 +44,13 @@ class Tag extends \yii\db\ActiveRecord
             'frequency' => 'Frequency',
         ];
     }
+	
+	/**
+ * @return \yii\db\ActiveQuery
+ */
+public function getTags()
+{
+    return $this->hasOne(Tag::className(), ['id' => 'id']);
+}
+	
 }
