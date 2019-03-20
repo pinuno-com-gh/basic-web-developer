@@ -28,30 +28,16 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 
 <div class="wrap">
-    <?php
+<?php
     NavBar::begin(['brandLabel' => 'My Blog', 'options' => ['class' => 'navbar-inverse navbar-fixed-top' ] ]);
-						
-	// /* for references */
-	
-	//	'brandLabel' => Yii::$app->name,
-	//    'brandUrl' => Yii::$app->homeUrl,
-	//     'options' => [
-	//       'class' => 'navbar-inverse navbar-fixed-top',
-	//     ],
-   // ]);
-   
-   
-   
+  
    
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
 		    
-            ['label' => 'Home', 'url' => ['/post/index']],		
+            ['label' => 'Home', 'url' => ['/site/index']],		
 			['label' => 'New Post', 'url' => ['/post/create']],
-	//		['label' => 'Comments', 'url' => ['/comment/index']],
-	//		['label' => 'Status', 'url' => ['/lookup/index']],
-	//		['label' => 'Tags', 'url' => ['/tag/index']],
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (

@@ -12,26 +12,18 @@ use yii\data\ActiveDataProvider;
 $this->title = 'Posts';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-</head>
-<body>
 <div class='PostIndex'>
 
     <h1><?= Html::encode($this->title) ?></h1>
-
   <!--  <p> For Reference
         <?= Html::a('Create Post', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 -->
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-		'filterModel' => new $searchModel,
-		
+		'filterModel' => new $searchModel,		
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-			
+            ['class' => 'yii\grid\SerialColumn'],			
             'id',
             'title',
             'content:ntext',
@@ -40,10 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'create_time:datetime',
             'update_time:datetime',
             'author_id',
-
             ['class' => 'yii\grid\ActionColumn'],
         ],
-    ]); ?> 
-</div>
-</body>
-</html>
+    ]); 
+?> 

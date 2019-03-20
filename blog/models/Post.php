@@ -66,24 +66,11 @@ class Post extends \yii\db\ActiveRecord
 	
 	public function search($params)
     {
-        $query = Post::find();//->where(['tags'=>$params]);
-		
-		
-		
-		$query->joinWith(['tags']);
-		
-		
-        $dataProvider = new ActiveDataProvider([
-		
-		
-            'query' => $query,
-			
-			'sort' => ['defaultOrder' =>['create_time' => SORT_DESC
-			],
-			
-			],
-
-			
+        $query = Post::find();//->where(['tags'=>$params]);		
+		$query->joinWith(['tags']);		
+        $dataProvider = new ActiveDataProvider([		
+            'query' => $query,			
+			'sort' => ['defaultOrder' =>['create_time' => SORT_DESC]],			
         ]);
         $query->andFilterWhere([
           'title' => $this->title,
@@ -92,13 +79,12 @@ class Post extends \yii\db\ActiveRecord
         ]);
         $query->andFilterWhere(['like', 'title', $this->title]);   
 		$query->andFilterWhere(['like', 'content', $this->content]);
-		$query->andFilterWhere(['like', 'tags', $this->tags]);
-        
+		$query->andFilterWhere(['like', 'tags', $this->tags]);       
         
         return $dataProvider;
     }
 	
-	/**
+/**
  * @return \yii\db\ActiveQuery
  **/
 public function getTags()
