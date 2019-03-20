@@ -14,11 +14,8 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="post-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
         <?= Html::a('comment', ['comment/create', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-		
-	<!--<p> For References
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
@@ -26,10 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
-	</p> -->
-
     </p>
-
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -43,5 +37,4 @@ $this->params['breadcrumbs'][] = $this->title;
             'author_id',
         ],
     ]) ?>
-
 </div>

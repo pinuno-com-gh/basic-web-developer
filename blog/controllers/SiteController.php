@@ -9,6 +9,8 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Post;
+use yii\data\ActiveDataProvider;
 
 class SiteController extends Controller
 {
@@ -56,17 +58,14 @@ class SiteController extends Controller
   
     
     /**
-     * Displays homepage.
+     * redirects to the post controller
      *   * @return string
      */
-		public function actionIndex()
+	public function actionIndex()
 	{
-     return $this->redirect(['post/index']);
+	   return $this->redirect(['post/index']);   
 	}
-	
-	
-    
-	
+
 	
 	
     /**
