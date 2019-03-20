@@ -45,12 +45,4 @@ class Tag extends \yii\db\ActiveRecord
         ];
     }
 	
-	/**
- * @return \yii\db\ActiveQuery
- */
-public function getTags()
-{
-    return $this->hasOne(Tag::className(), ['id' => 'id']);
-}
-	
 }

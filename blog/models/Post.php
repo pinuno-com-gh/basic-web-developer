@@ -64,9 +64,9 @@ class Post extends \yii\db\ActiveRecord
     }
 	
 	
-	public function search($params)
+	public function search($param)
     {
-        $query = Post::find();//->where(['tags'=>$params]);
+        $query = Post::find()->where(['tags'=>$param]);
 		
 		
 		
@@ -85,7 +85,7 @@ class Post extends \yii\db\ActiveRecord
 
 			
         ]);
-        $query->andFilterWhere([
+        $query->FilterWhere([
           'title' => $this->title,
 		  'content' => $this->content,
 		  'tags' => $this->tags,
@@ -98,20 +98,15 @@ class Post extends \yii\db\ActiveRecord
         return $dataProvider;
     }
 	
+	
+
+	
 	/**
  * @return \yii\db\ActiveQuery
  **/
-public function getTags()
+	public function getTags()
 {
     return $this->hasOne(Tag::className(), ['id' => 'id']);
 }
 
-/**
- * @return \yii\db\ActiveQuery
- 
-public function getCity()
-{
-    return $this->hasOne(City::className(), ['id' => 'city_id']);
-} */
 }
-
