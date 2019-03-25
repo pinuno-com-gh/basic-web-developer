@@ -64,7 +64,7 @@ class Post extends \yii\db\ActiveRecord
     }
 	
 	
-	public function search($param)
+/**	public function search($param)
     {
 <<<<<<< HEAD
         $query = Post::find()->where(['tags'=>$param]);
@@ -83,6 +83,8 @@ class Post extends \yii\db\ActiveRecord
 			],
 			
 			],
+			
+	]);
 
 			
 =======
@@ -115,9 +117,9 @@ class Post extends \yii\db\ActiveRecord
 >>>>>>> be2d398902de6bbeb853403689f4f9a6a7e3c425
  * @return \yii\db\ActiveQuery
  **/
-	public function getTags()
+	/**public function getTags()
 {
     return $this->hasOne(Tag::className(), ['id' => 'id']);
-}
+}**/
 
 }

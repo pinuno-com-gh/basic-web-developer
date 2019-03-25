@@ -11,8 +11,8 @@ class PostSearch extends Post
     {
         // only fields in rules() are searchable
         return [
-            [['id'], 'integer'],
-            [['title', 'creation_date'], 'safe'],
+          //  [['id'], 'integer'],
+            [['title', 'tags', 'content',], 'safe'],
         ];
     }
     
@@ -35,9 +35,9 @@ class PostSearch extends Post
         }
         
         // adjust the query by adding the filters
-        $query->andFilterWhere(['id' => $this->id]);
         $query->andFilterWhere(['like', 'title', $this->title]);
-            //->andFilterWhere(['like', 'creation_date', $this->creation_date]);
+        $query->andFilterWhere(['like', 'tags', $this->tags]);
+		$query->andFilterWhere(['like', 'content', $this->content]);
         
         return $dataProvider;
     }

@@ -62,11 +62,15 @@ class PostController extends Controller
      */
     public function actionIndex()
     {
-<<<<<<< HEAD
-		$searchModel = new post();
+//<<<<<<< HEAD
+
+		$searchModel = new PostSearch();
 		
 		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-		
+		return $this->render('index',  [
+            'searchModel' => $searchModel,
+			'dataProvider' => $dataProvider,
+        ]);
 		
        /** For references
 	   
@@ -82,8 +86,8 @@ class PostController extends Controller
         return $this->render('index',  [
             'dataProvider' => $dataProvider,
             'searchModel' => $searchModel,
-        ]);
-    }
+        ]);**/
+	}
 
 		
 
