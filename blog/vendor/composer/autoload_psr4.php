@@ -36,16 +36,6 @@ return array(
     'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),
     'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
     'Codeception\\PHPUnit\\' => array($vendorDir . '/codeception/phpunit-wrapper/src'),
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    'Codeception\\Extension\\' => array($vendorDir . '/codeception/codeception/ext', $vendorDir . '/codeception/base/ext'),
-    'Codeception\\' => array($vendorDir . '/codeception/stub/src', $vendorDir . '/codeception/codeception/src/Codeception', $vendorDir . '/codeception/verify/src/Codeception', $vendorDir . '/codeception/base/src/Codeception'),
-=======
     'Codeception\\Extension\\' => array($vendorDir . '/codeception/base/ext', $vendorDir . '/codeception/codeception/ext'),
     'Codeception\\' => array($vendorDir . '/codeception/base/src/Codeception', $vendorDir . '/codeception/codeception/src/Codeception', $vendorDir . '/codeception/stub/src'),
->>>>>>> Stashed changes
-=======
-    'Codeception\\Extension\\' => array($vendorDir . '/codeception/base/ext', $vendorDir . '/codeception/codeception/ext'),
-    'Codeception\\' => array($vendorDir . '/codeception/base/src/Codeception', $vendorDir . '/codeception/codeception/src/Codeception', $vendorDir . '/codeception/stub/src'),
->>>>>>> Stashed changes
 );
